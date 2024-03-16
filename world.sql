@@ -132,10 +132,12 @@ FROM countries c, languages l
 WHERE l.language = 'Slovene'
 ORDER BY l.percentage ASC;
 
--- 2. ¿Qué consulta ejecutarías para mostrar el número total de ciudades para cada país? Su consulta debe devolver el nombre del país y el número total de ciudades. Tu consulta debe organizar el resultado por el número de ciudades en orden descendente. (3)
-SELECT name AS Pais, population AS problacion
-FROM countries
-ORDER BY name DESC;
+-- 2. ¿Qué consulta ejecutarías para mostrar el número total de ciudades para cada país? Su consulta debe devolver el nombre del país y el número total de ciudades.
+-- Tu consulta debe organizar el resultado por el número de ciudades en orden descendente. (3)
+SELECT c.name AS Pais, COUNT(*) AS num_paises
+FROM countries c JOIN cities ci ON ci.country_id = c.id
+GROUP BY Pais
+ORDER BY num_paises DESC;
 
 -- 3. ¿Qué consulta harías para obtener todas las ciudades de México con una población de más de 500,000? Tu consulta debe organizar el resultado por población en orden descendente. (1)
 SELECT *
